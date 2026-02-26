@@ -4,7 +4,7 @@ plugins {
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {
-    localProperties.file.withInputStream { instr ->
+    localPropertiesFile.withInputStream { instr ->
         localProperties.load(instr)
     }
 }
