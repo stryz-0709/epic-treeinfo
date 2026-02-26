@@ -1,6 +1,14 @@
 plugins {
     alias(libs.plugins.androidApplication)
 }
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+    localProperties.file.withInputStream { instr ->
+        localProperties.load(instr)
+    }
+}
+
 android {
     namespace 'com.epictech.treeinfo'
     compileSdk 34
@@ -11,6 +19,9 @@ android {
         targetSdk 34
         versionCode 1
         versionName "1.0"
+
+        buildConfigField "String", "ER_USERNAME", "\"${localProperties.getProperty('ER_USERNAME', '')}\""
+        buildConfigField "String", "ER_PASSWORD", "\"${localProperties.getProperty('ER_PASSWORD', '')}\""
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
