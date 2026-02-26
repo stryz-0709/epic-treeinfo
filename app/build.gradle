@@ -1,0 +1,107 @@
+plugins {
+    alias(libs.plugins.androidApplication)
+}
+android {
+    namespace 'com.epictech.cowrfid'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.epictech.cowrfid"
+        minSdk 29
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildFeatures {
+        viewBinding true
+        buildConfig true
+    }
+    packagingOptions {
+        resources {
+            excludes += ['META-INF/DEPENDENCIES']
+        }
+    }
+    buildToolsVersion '36.1.0'
+    ndkVersion ndkVersion
+}
+
+dependencies {
+    configurations.all {
+        exclude group: "com.google.guava", module: "listenablefuture"
+    }
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    implementation 'com.google.android.material:material:1.11.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.7.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0'
+    implementation 'androidx.navigation:navigation-fragment:2.7.7'
+    implementation 'androidx.navigation:navigation-ui:2.7.7'
+    implementation 'androidx.annotation:annotation:1.7.1'
+    implementation 'androidx.activity:activity:1.9.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    implementation('com.google.api-client:google-api-client-android:2.2.0') {
+        exclude group: 'org.apache.httpcomponents'
+    }
+    implementation 'com.google.http-client:google-http-client-android:1.42.3'
+    implementation('com.google.apis:google-api-services-sheets:v4-rev20220927-2.0.0') {
+        exclude group: 'com.google.guava'
+    }
+    implementation('com.google.apis:google-api-services-drive:v3-rev20220815-2.0.0') {
+        exclude group: 'com.google.guava'
+    }
+    implementation 'com.google.http-client:google-http-client-jackson2:1.42.3'
+
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    implementation('org.eclipse.paho:org.eclipse.paho.android.service:1.0.2'){
+        exclude module: 'support-v4'
+    }
+    implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.0'
+    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.1.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    implementation 'com.github.BharathKSunil:MultiWaveHeader:v1.0.0-alpha-4'
+
+    implementation 'me.relex:circleindicator:2.1.6'
+    implementation 'com.github.lzyzsd:circleprogress:1.2.1'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation('com.androidplot:androidplot-core:1.5.7') {
+        exclude group: 'com.halfhp.fig', module: 'figlib'
+    }
+    implementation 'com.github.bumptech.glide:glide:4.10.0'
+    implementation 'com.github.iielse:switchbutton:1.0.4'
+    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+    implementation 'com.github.STRAIBERRY-AI-INC:Straiberry-charts:1.1.0'
+
+    implementation 'androidx.core:core-ktx:1.13.1'
+    implementation 'com.google.android.gms:play-services-base:18.4.0'
+    implementation 'com.google.android.gms:play-services-basement:18.3.0'
+    implementation 'com.google.android.gms:play-services-tasks:18.1.0'
+
+    implementation 'com.google.android.gms:play-services-auth:21.1.0'
+
+    implementation 'androidx.core:core:1.13.1'
+
+    implementation platform('com.google.firebase:firebase-bom:34.6.0')
+    implementation 'com.google.firebase:firebase-analytics'
+
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+}

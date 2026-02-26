@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chỉnh sửa thông tin Bò"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="16dp" />
+
+            <TextView
+                android:id="@+id/tv_edit_epc_serial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="EPC: "
+                android:textSize="18sp"
+                android:layout_marginBottom="16dp" />
+
+            <!-- SLOT 1: Main Image -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginBottom="8dp">
+
+                <ImageView
+                    android:id="@+id/iv_dialog_slot_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:background="@android:color/darker_gray" />
+
+                <TextView
+                    android:id="@+id/tv_dialog_placeholder_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Ảnh chính (Nhấn để thêm)"
+                    android:textSize="16sp"
+                    android:visibility="visible"
+                    android:background="@android:color/darker_gray"
+                    android:textColor="@android:color/white"/>
+            </FrameLayout>
+
+            <!-- Sub Slots Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp"
+                android:weightSum="3">
+
+                <!-- SLOT 2 -->
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="4dp">
+                    <ImageView
+                        android:id="@+id/iv_dialog_slot_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:background="@android:color/darker_gray"/>
+                    <TextView
+                        android:id="@+id/tv_dialog_placeholder_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                                            android:gravity="center"
+                                            android:text="+"
+                                            android:textSize="24sp"
+                                            android:visibility="visible"
+                                            android:background="@android:color/darker_gray"
+                                            android:textColor="@android:color/white"/>                </FrameLayout>
+
+                <!-- SLOT 3 -->
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginStart="4dp">
+                    <ImageView
+                        android:id="@+id/iv_dialog_slot_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:background="@android:color/darker_gray"/>
+                    <TextView
+                        android:id="@+id/tv_dialog_placeholder_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                                            android:gravity="center"
+                                            android:text="+"
+                                            android:textSize="24sp"
+                                            android:visibility="visible"
+                                            android:background="@android:color/darker_gray"
+                                            android:textColor="@android:color/white"/>                </FrameLayout>
+
+                <!-- SLOT 4 -->
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginStart="4dp">
+                    <ImageView
+                        android:id="@+id/iv_dialog_slot_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:background="@android:color/darker_gray"/>
+                    <TextView
+                        android:id="@+id/tv_dialog_placeholder_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                                            android:gravity="center"
+                                            android:text="+"
+                                            android:textSize="24sp"
+                                            android:visibility="visible"
+                                            android:background="@android:color/darker_gray"
+                                            android:textColor="@android:color/white"/>                </FrameLayout>
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="Mã bò:"
+                android:textStyle="bold"
+                android:textSize="16dp"/>
+
+            <EditText
+                android:id="@+id/et_edit_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nhập số ghi trên thẻ bò"
+                android:inputType="number"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="Giống:"
+                android:textStyle="bold"
+                android:textSize="16dp"/>
+
+            <EditText
+                android:id="@+id/et_edit_breed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nhập giống bò"
+                android:inputType="text"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="Giới tính:"
+                android:textStyle="bold"
+                android:textSize="16dp"/>
+
+            <Spinner
+                android:id="@+id/spinner_edit_sex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:minHeight="48dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="Ngày nhập chuồng: (VD: 23/11/2025)"
+                android:textStyle="bold"
+                android:textSize="16dp"/>
+
+            <EditText
+                android:id="@+id/et_edit_import_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nhập ngày nhập chuồng"
+                android:inputType="none"
+                android:focusable="false"
+                android:cursorVisible="false"
+                android:drawableEnd="@android:drawable/ic_menu_today"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="Ngày sinh: (VD: 23/11/2025)"
+                android:textStyle="bold"
+                android:textSize="16dp"/>
+
+            <EditText
+                android:id="@+id/et_edit_dob"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nhập ngày sinh"
+                android:inputType="none"
+                android:focusable="false"
+                android:cursorVisible="false"
+                android:drawableEnd="@android:drawable/ic_menu_today"
+                android:layout_marginBottom="8dp" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="Cân nặng: (KG)"
+                android:textStyle="bold"
+                android:textSize="16dp"/>
+
+            <EditText
+                android:id="@+id/et_edit_weight_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nhập cân nặng"
+                android:inputType="number"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="Sức khỏe:"
+                android:textStyle="bold"
+                android:textSize="16dp"/>
+
+            <Spinner
+                android:id="@+id/spinner_edit_health"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:minHeight="48dp" />
+
+            <TextView
+                android:id="@+id/tv_edit_health_detail_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="Chi tiết bệnh:"
+                android:textStyle="bold"
+                android:textSize="16dp"/>
+
+            <EditText
+                android:id="@+id/et_edit_health_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nhập chi tiết bệnh"
+                android:inputType="textMultiLine"
+                android:minLines="2"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/tv_edit_health_date_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="Ngày khám sức khỏe: (VD: 23/11/2025)"
+                android:textStyle="bold"
+                android:textSize="16dp"/>
+
+            <EditText
+                android:id="@+id/et_edit_health_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nhập ngày khám"
+                android:inputType="none"
+                android:focusable="false"
+                android:cursorVisible="false"
+                android:drawableEnd="@android:drawable/ic_menu_today"
+                android:layout_marginBottom="8dp" />
+
+
+            <TextView
+                android:id="@+id/tv_edit_preg_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="Trạng thái mang thai:"
+                android:textStyle="bold"
+                android:textSize="16dp"/>
+
+            <Spinner
+                android:id="@+id/spinner_edit_preg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:minHeight="48dp" />
+
+            <TextView
+                android:id="@+id/tv_edit_preg_date_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="Ngày có thai:"
+                android:textStyle="bold"
+                android:textSize="16dp"/>
+
+            <EditText
+                android:id="@+id/et_edit_preg_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nhập ngày có thai"
+                android:inputType="none"
+                android:focusable="false"
+                android:cursorVisible="false"
+                android:drawableEnd="@android:drawable/ic_menu_today"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/tv_edit_num_preg_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="Số lần mang thai:"
+                android:textStyle="bold"
+                android:textSize="16dp"/>
+
+            <EditText
+                android:id="@+id/et_edit_num_preg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nhập số lần mang thai"
+                android:inputType="number"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="Vị trí:"
+                android:textStyle="bold"
+                android:textSize="16dp"/>
+
+            <Spinner
+                android:id="@+id/spinner_edit_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="end">
+
+                <Button
+                    android:id="@+id/btn_save_cow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lưu"
+                    android:layout_marginEnd="8dp" />
+
+                <Button
+                    android:id="@+id/btn_cancel_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Quay lại" />
+
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="500dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

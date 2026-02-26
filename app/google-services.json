@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "754910189052",
+    "project_id": "cowinfo-cead8",
+    "storage_bucket": "cowinfo-cead8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:754910189052:android:2fbd6d285b99975670ce79",
+        "android_client_info": {
+          "package_name": "com.epictech.cowrfid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "754910189052-dk8gtjpsbjn372pub1t48u939fgac27s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.epictech.cowrfid",
+            "certificate_hash": "117370d2c906e3af0bde871d63fd018cdafeb8bd"
+          }
+        },
+        {
+          "client_id": "754910189052-qcoe18m4s7lrihpbs5i1u6dkb4vramqp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.epictech.cowrfid",
+            "certificate_hash": "6512ef450240ccf802bad7422a74a4b3fb9b0f08"
+          }
+        },
+        {
+          "client_id": "754910189052-s1pvoj5bmulf5abgvuk920risult3svr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtzVlYdK82bEiQ3bLijVfdJMRPGRYW1K0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "754910189052-s1pvoj5bmulf5abgvuk920risult3svr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
