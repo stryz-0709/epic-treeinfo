@@ -23,14 +23,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.QuảnLýBò"
+        android:theme="@style/Theme.QuảnLýCây"
         tools:targetApi="31" >
 
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize"
-            android:theme="@style/Theme.QuảnLýBò">
+            android:theme="@style/Theme.QuảnLýCây">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -40,21 +40,21 @@
         <activity
             android:name=".InfoActivity"
             android:exported="false"
-            android:theme="@style/Theme.QuảnLýBò" />
+            android:theme="@style/Theme.QuảnLýCây" />
 
         <activity
             android:name=".LinkCowActivity"
             android:exported="false"
-            android:theme="@style/Theme.QuảnLýBò" />
+            android:theme="@style/Theme.QuảnLýCây" />
 
         <activity
             android:name=".GuideActivity"
             android:exported="false"
-            android:theme="@style/Theme.QuảnLýBò" />
+            android:theme="@style/Theme.QuảnLýCây" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.epictech.cowrfid.fileprovider"
+            android:authorities="com.epictech.treeinfo.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

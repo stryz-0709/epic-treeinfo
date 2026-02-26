@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:754910189052:android:2fbd6d285b99975670ce79",
         "android_client_info": {
-          "package_name": "com.epictech.cowrfid"
+          "package_name": "com.epictech.treeinfo"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "754910189052-dk8gtjpsbjn372pub1t48u939fgac27s.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.epictech.cowrfid",
+            "package_name": "com.epictech.treeinfo",
             "certificate_hash": "117370d2c906e3af0bde871d63fd018cdafeb8bd"
           }
         },
@@ -25,7 +25,7 @@
           "client_id": "754910189052-qcoe18m4s7lrihpbs5i1u6dkb4vramqp.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.epictech.cowrfid",
+            "package_name": "com.epictech.treeinfo",
             "certificate_hash": "6512ef450240ccf802bad7422a74a4b3fb9b0f08"
           }
         },

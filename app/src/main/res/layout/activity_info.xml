@@ -28,7 +28,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Không tìm thấy thông tin bò/Bò không tồn tại"
+            android:text="Không tìm thấy thông tin cây/Cây không tồn tại"
             android:textSize="18sp"
             android:gravity="center"
             android:layout_marginBottom="16dp" />
@@ -174,13 +174,13 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Thông tin cơ bản"
+                            android:text="Thông tin cây"
                             android:textSize="20sp"
                             android:textStyle="bold"
                             android:textColor="@android:color/black"
                             android:layout_marginBottom="12dp"/>
 
-                        <!-- ID -->
+                        <!-- Tree ID -->
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -190,14 +190,14 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="ID: "
+                                android:text="Tree ID: "
                                 android:textSize="16sp"
                                 android:textStyle="bold"/>
                             <TextView
-                                android:id="@+id/id"
+                                android:id="@+id/tv_tree_id"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="12345"
+                                android:text="-"
                                 android:textSize="16sp"
                                 android:textColor="@android:color/white"
                                 android:background="@drawable/bg_badge_purple"
@@ -208,7 +208,7 @@
                                 android:layout_marginStart="4dp"/>
                         </LinearLayout>
 
-                        <!-- Breed -->
+                        <!-- Loài cây -->
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -217,19 +217,19 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Giống: "
+                                android:text="Loài cây: "
                                 android:textSize="16sp"
                                 android:textStyle="bold"/>
                             <TextView
-                                android:id="@+id/breed"
+                                android:id="@+id/tv_species"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Angus"
+                                android:text="-"
                                 android:textSize="16sp"
                                 android:layout_marginStart="4dp"/>
                         </LinearLayout>
 
-                        <!-- Sex -->
+                        <!-- Tuổi -->
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -238,19 +238,19 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Giới tính: "
+                                android:text="Tuổi (năm): "
                                 android:textSize="16sp"
                                 android:textStyle="bold"/>
                             <TextView
-                                android:id="@+id/sex"
+                                android:id="@+id/tv_age"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Cái"
+                                android:text="-"
                                 android:textSize="16sp"
                                 android:layout_marginStart="4dp"/>
                         </LinearLayout>
 
-                        <!-- Import Date -->
+                        <!-- Chiều cao -->
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -259,19 +259,19 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Ngày nhập: "
+                                android:text="Chiều cao (m): "
                                 android:textSize="16sp"
                                 android:textStyle="bold"/>
                             <TextView
-                                android:id="@+id/import_date"
+                                android:id="@+id/tv_height"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="01/01/2024"
+                                android:text="-"
                                 android:textSize="16sp"
                                 android:layout_marginStart="4dp"/>
                         </LinearLayout>
 
-                        <!-- DOB -->
+                        <!-- Đường kính -->
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -280,19 +280,40 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Ngày sinh: "
+                                android:text="Đường kính (cm): "
                                 android:textSize="16sp"
                                 android:textStyle="bold"/>
                             <TextView
-                                android:id="@+id/dob"
+                                android:id="@+id/tv_diameter"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="01/01/2023"
+                                android:text="-"
                                 android:textSize="16sp"
                                 android:layout_marginStart="4dp"/>
                         </LinearLayout>
 
-                        <!-- Position (Status) -->
+                        <!-- Tán lá -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginBottom="8dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Độ rộng tán lá (m): "
+                                android:textSize="16sp"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:id="@+id/tv_canopy"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="-"
+                                android:textSize="16sp"
+                                android:layout_marginStart="4dp"/>
+                        </LinearLayout>
+
+                        <!-- Tình trạng -->
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -302,14 +323,14 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Vị trí: "
+                                android:text="Tình trạng: "
                                 android:textSize="16sp"
                                 android:textStyle="bold"/>
                             <TextView
-                                android:id="@+id/status"
+                                android:id="@+id/tv_condition"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Trong chuồng"
+                                android:text="-"
                                 android:textSize="16sp"
                                 android:textColor="@android:color/white"
                                 android:background="@drawable/bg_badge_green"
@@ -324,7 +345,7 @@
 
                 </com.google.android.material.card.MaterialCardView>
 
-                <!-- Card 2: Health & Status -->
+                <!-- Card 2: Chi tiết khác -->
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -342,166 +363,13 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Sức khỏe &amp; Tình trạng"
+                            android:text="Chi tiết khác"
                             android:textSize="20sp"
                             android:textStyle="bold"
                             android:textColor="@android:color/black"
                             android:layout_marginBottom="12dp"/>
 
-                        <!-- Weight -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:layout_marginBottom="8dp">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Cân nặng: "
-                                android:textSize="16sp"
-                                android:textStyle="bold"/>
-                            <TextView
-                                android:id="@+id/weight"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="500 KG"
-                                android:textSize="16sp"
-                                android:textColor="@android:color/black"
-                                android:background="@drawable/bg_badge_light_gray"
-                                android:paddingStart="8dp"
-                                android:paddingEnd="8dp"
-                                android:paddingTop="2dp"
-                                android:paddingBottom="2dp"
-                                android:layout_marginStart="4dp"/>
-                        </LinearLayout>
-
-                        <!-- Health -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:layout_marginBottom="8dp">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Sức khỏe: "
-                                android:textSize="16sp"
-                                android:textStyle="bold"/>
-                            <TextView
-                                android:id="@+id/health"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Bình thường"
-                                android:textSize="16sp"
-                                android:textColor="@android:color/white"
-                                android:background="@drawable/bg_badge_green"
-                                android:paddingStart="8dp"
-                                android:paddingEnd="8dp"
-                                android:paddingTop="2dp"
-                                android:paddingBottom="2dp"
-                                android:layout_marginStart="4dp"/>
-                        </LinearLayout>
-
-                        <!-- Health Date -->
-                        <LinearLayout
-                            android:id="@+id/layout_health_date"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_marginBottom="8dp"
-                            android:visibility="gone">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Ngày bị bệnh: "
-                                android:textSize="16sp"
-                                android:textStyle="bold"/>
-                            <TextView
-                                android:id="@+id/health_date"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="01/01/2024"
-                                android:textSize="16sp"
-                                android:layout_marginStart="4dp"/>
-                        </LinearLayout>
-
-                        <!-- Health Detail -->
-                        <LinearLayout
-                            android:id="@+id/layout_health_detail"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_marginBottom="8dp"
-                            android:visibility="gone">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Chi tiết bệnh: "
-                                android:textSize="16sp"
-                                android:textStyle="bold"/>
-                            <TextView
-                                android:id="@+id/health_detail"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="..."
-                                android:textSize="16sp"
-                                android:layout_marginStart="4dp"/>
-                        </LinearLayout>
-
-                        <!-- Pregnancy -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:layout_marginBottom="8dp">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Thai sản: "
-                                android:textSize="16sp"
-                                android:textStyle="bold"/>
-                            <TextView
-                                android:id="@+id/preg"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Không"
-                                android:textSize="16sp"
-                                android:textColor="@android:color/white"
-                                android:background="@drawable/bg_badge_gray"
-                                android:paddingStart="8dp"
-                                android:paddingEnd="8dp"
-                                android:paddingTop="2dp"
-                                android:paddingBottom="2dp"
-                                android:layout_marginStart="4dp"/>
-                        </LinearLayout>
-
-                        <!-- Pregnancy Date -->
-                        <LinearLayout
-                            android:id="@+id/layout_preg_date"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_marginBottom="8dp"
-                            android:visibility="gone">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Ngày phối: "
-                                android:textSize="16sp"
-                                android:textStyle="bold"/>
-                            <TextView
-                                android:id="@+id/preg_date"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="01/01/2024"
-                                android:textSize="16sp"
-                                android:layout_marginStart="4dp"/>
-                        </LinearLayout>
-
-                        <!-- Pregnancy Count -->
+                        <!-- Latitude -->
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -510,14 +378,161 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Số lần phối: "
+                                android:text="Vĩ độ (Lat): "
                                 android:textSize="16sp"
                                 android:textStyle="bold"/>
                             <TextView
-                                android:id="@+id/num_preg"
+                                android:id="@+id/tv_latitude"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="0"
+                                android:text="-"
+                                android:textSize="16sp"
+                                android:layout_marginStart="4dp"/>
+                        </LinearLayout>
+
+                        <!-- Longitude -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginBottom="8dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Kinh độ (Long): "
+                                android:textSize="16sp"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:id="@+id/tv_longitude"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="-"
+                                android:textSize="16sp"
+                                android:layout_marginStart="4dp"/>
+                        </LinearLayout>
+
+                        <!-- Được tạo lúc -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginBottom="8dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Được tạo lúc: "
+                                android:textSize="16sp"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:id="@+id/tv_created_at"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="-"
+                                android:textSize="16sp"
+                                android:layout_marginStart="4dp"/>
+                        </LinearLayout>
+
+                        <!-- Lần báo cáo gần nhất -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginBottom="8dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Lần báo cáo: "
+                                android:textSize="16sp"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:id="@+id/tv_last_reported"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="-"
+                                android:textSize="16sp"
+                                android:layout_marginStart="4dp"/>
+                        </LinearLayout>
+
+                        <!-- Trạng thái sự kiện -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginBottom="8dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Trạng thái sự kiện: "
+                                android:textSize="16sp"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:id="@+id/tv_event_status"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="-"
+                                android:textSize="16sp"
+                                android:layout_marginStart="4dp"/>
+                        </LinearLayout>
+
+                        <!-- SN -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginBottom="8dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="SN: "
+                                android:textSize="16sp"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:id="@+id/tv_sn"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="-"
+                                android:textSize="16sp"
+                                android:layout_marginStart="4dp"/>
+                        </LinearLayout>
+
+                        <!-- Đồng bộ lúc -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginBottom="8dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Đồng bộ lúc: "
+                                android:textSize="16sp"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:id="@+id/tv_synced_at"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="-"
+                                android:textSize="16sp"
+                                android:layout_marginStart="4dp"/>
+                        </LinearLayout>
+                        
+                        <!-- NFC ID -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginBottom="8dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="NFC ID: "
+                                android:textSize="16sp"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:id="@+id/tv_nfc_id"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="-"
                                 android:textSize="16sp"
                                 android:layout_marginStart="4dp"/>
                         </LinearLayout>
@@ -530,6 +545,7 @@
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
+    <!-- edit/add button names kept the same, text updated -->
     <Button
         android:id="@+id/btn_edit_info"
         android:layout_width="match_parent"
@@ -542,7 +558,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="Thêm bò"
+        android:text="Thêm cây"
         android:visibility="gone" />
 
     <Button
@@ -550,7 +566,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="Liên kết bò có sẵn"
+        android:text="Liên kết cây có sẵn"
         android:visibility="gone" />
 
     <Button
