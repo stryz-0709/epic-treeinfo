@@ -113,6 +113,8 @@ public class InfoActivity extends AppCompatActivity {
     private String currentNfcId;
     private List<Object> currentTreeData;
     private List<String> currentImageUrls = new ArrayList<>();
+    private boolean isAdmin = false;
+    private int currentTreeRowIndex = -1; // Row index in spreadsheet (1-based, excluding header)
 
     // Google API Services
     private static final String SPREADSHEET_ID = "1uCnIkjx8GzFgOkzbIIHOgunalvm81zrZv0aidZaYgOk";
@@ -163,6 +165,8 @@ public class InfoActivity extends AppCompatActivity {
         initializeSheetsService();
 
         currentNfcId = getIntent().getStringExtra("NFC_SERIAL");
+        isAdmin = getIntent().getBooleanExtra("IS_ADMIN", false);
+        
         if (currentNfcId != null && sheetsService != null) {
             fetchTreeInfo(currentNfcId);
         } else if (sheetsService == null) {
@@ -173,7 +177,11 @@ public class InfoActivity extends AppCompatActivity {
         }
 
         editInfoButton.setOnClickListener(v -> {
-            Toast.makeText(InfoActivity.this, "Chức năng chỉnh sửa đang được cập nhật cho hệ thống cây.", Toast.LENGTH_SHORT).show();
+            if (isAdmin && currentTreeData != null) {
+                showEditDialog();
+            } else {
+                Toast.makeText(InfoActivity.this, "Bạn không có quyền chỉnh sửa.", Toast.LENGTH_SHORT).show();
+            }
         });
 
         addTreeButton.setOnClickListener(v -> {
@@ -225,8 +233,7 @@ public class InfoActivity extends AppCompatActivity {
 
         swipeRefreshLayout = findViewById(R.id.swipe_refresh_info);
         
-        // Hide edit/add buttons for now as requested just to fetch data
-        editInfoButton.setVisibility(View.GONE);
+        // Edit button visibility will be set based on isAdmin after data is loaded
         addTreeButton.setVisibility(View.GONE);
         linkTreeButton.setVisibility(View.GONE);
     }
@@ -381,6 +388,13 @@ public class InfoActivity extends AppCompatActivity {
                             }
 
                             treeDetailsLayout.setVisibility(View.VISIBLE);
+                            // Show edit button only for admin users
+                            if (isAdmin) {
+                                editInfoButton.setVisibility(View.VISIBLE);
+                                editInfoButton.setText("Chỉnh sửa thông tin");
+                            } else {
+                                editInfoButton.setVisibility(View.GONE);
+                            }
                             updateUIWithTreeData(currentTreeData);
                         } else {
                             notFoundLayout.setVisibility(View.VISIBLE);
@@ -412,6 +426,7 @@ public class InfoActivity extends AppCompatActivity {
                     listener.onSuccess(null);
                     return;
                 }
+                int rowIndex = 0; // 0-based index
                 for (List<Object> row : values) {
                     if (!row.isEmpty()) {
                         String rowTreeId = row.size() > COL_TREE_ID ? row.get(COL_TREE_ID).toString() : "";
@@ -419,14 +434,147 @@ public class InfoActivity extends AppCompatActivity {
                         
                         // Check match for NFC ID or Tree ID
                         if (rowNfcId.equalsIgnoreCase(queryId) || rowTreeId.equalsIgnoreCase(queryId)) {
+                            currentTreeRowIndex = rowIndex + 1; // Convert to 1-based for Sheets API
                             listener.onSuccess(Collections.singletonList(row));
                             return;
                         }
                     }
+                    rowIndex++;
                 }
                 listener.onSuccess(null);
             } catch (Exception e) {
                 listener.onFailure(e);
+            }
+        });
+    }
+
+    private void showEditDialog() {
+        if (currentTreeData == null) {
+            Toast.makeText(this, "Không có dữ liệu để chỉnh sửa.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_edit_tree, null);
+        builder.setView(dialogView);
+
+        // Find dialog views
+        TextView tvNfcId = dialogView.findViewById(R.id.tv_edit_tree_nfc);
+        EditText etTreeId = dialogView.findViewById(R.id.et_edit_tree_id);
+        EditText etSpecies = dialogView.findViewById(R.id.et_edit_tree_species);
+        EditText etAge = dialogView.findViewById(R.id.et_edit_tree_age);
+        EditText etHeight = dialogView.findViewById(R.id.et_edit_tree_height);
+        EditText etDiameter = dialogView.findViewById(R.id.et_edit_tree_diameter);
+        EditText etCanopy = dialogView.findViewById(R.id.et_edit_tree_canopy);
+        Spinner spinnerCondition = dialogView.findViewById(R.id.spinner_edit_tree_condition);
+        Button btnSave = dialogView.findViewById(R.id.btn_save_tree);
+        Button btnCancel = dialogView.findViewById(R.id.btn_cancel_edit_tree);
+
+        // Setup condition spinner
+        String[] conditions = {"Tốt", "Trung bình", "Xấu"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, conditions);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerCondition.setAdapter(adapter);
+
+        // Pre-fill with current data
+        tvNfcId.setText("NFC ID: " + (currentTreeData.size() > COL_NFC_ID ? currentTreeData.get(COL_NFC_ID).toString() : "N/A"));
+        etTreeId.setText(currentTreeData.size() > COL_TREE_ID ? currentTreeData.get(COL_TREE_ID).toString() : "");
+        etSpecies.setText(currentTreeData.size() > COL_SPECIES ? currentTreeData.get(COL_SPECIES).toString() : "");
+        etAge.setText(currentTreeData.size() > COL_AGE ? currentTreeData.get(COL_AGE).toString() : "");
+        etHeight.setText(currentTreeData.size() > COL_HEIGHT ? currentTreeData.get(COL_HEIGHT).toString() : "");
+        etDiameter.setText(currentTreeData.size() > COL_DIAMETER ? currentTreeData.get(COL_DIAMETER).toString() : "");
+        etCanopy.setText(currentTreeData.size() > COL_CANOPY ? currentTreeData.get(COL_CANOPY).toString() : "");
+
+        // Set spinner selection based on current condition
+        String currentCondition = currentTreeData.size() > COL_CONDITION ? currentTreeData.get(COL_CONDITION).toString() : "";
+        for (int i = 0; i < conditions.length; i++) {
+            if (currentCondition.toLowerCase().contains(conditions[i].toLowerCase())) {
+                spinnerCondition.setSelection(i);
+                break;
+            }
+        }
+
+        AlertDialog dialog = builder.create();
+
+        btnSave.setOnClickListener(v -> {
+            // Get values from dialog
+            String treeId = etTreeId.getText().toString().trim();
+            String species = etSpecies.getText().toString().trim();
+            String age = etAge.getText().toString().trim();
+            String height = etHeight.getText().toString().trim();
+            String diameter = etDiameter.getText().toString().trim();
+            String canopy = etCanopy.getText().toString().trim();
+            String condition = spinnerCondition.getSelectedItem().toString();
+
+            // Validate required fields
+            if (treeId.isEmpty()) {
+                etTreeId.setError("Vui lòng nhập Tree ID");
+                return;
+            }
+
+            // Update spreadsheet
+            updateTreeDataToSheet(treeId, species, age, height, diameter, canopy, condition);
+            dialog.dismiss();
+        });
+
+        btnCancel.setOnClickListener(v -> dialog.dismiss());
+
+        dialog.show();
+    }
+
+    private void updateTreeDataToSheet(String treeId, String species, String age, String height, 
+                                        String diameter, String canopy, String condition) {
+        if (currentTreeRowIndex <= 0) {
+            Toast.makeText(this, "Không xác định được vị trí dữ liệu trong bảng.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        progressBar.setVisibility(View.VISIBLE);
+
+        executor.execute(() -> {
+            try {
+                // Prepare updated row values - we only update columns A to G (Tree ID, Species, Age, Height, Diameter, Canopy, Condition)
+                List<Object> rowData = new ArrayList<>();
+                rowData.add(treeId);           // Column A - Tree ID
+                rowData.add(species);          // Column B - Species
+                rowData.add(age);              // Column C - Age
+                rowData.add(height);           // Column D - Height
+                rowData.add(diameter);         // Column E - Diameter
+                rowData.add(canopy);           // Column F - Canopy
+                rowData.add(condition);        // Column G - Condition
+
+                // Create update range (only columns A to G for the specific row)
+                String updateRange = "Tree!A" + currentTreeRowIndex + ":G" + currentTreeRowIndex;
+                
+                ValueRange body = new ValueRange().setValues(Collections.singletonList(rowData));
+                
+                sheetsService.spreadsheets().values()
+                        .update(SPREADSHEET_ID, updateRange, body)
+                        .setValueInputOption("USER_ENTERED")
+                        .execute();
+
+                runOnUiThread(() -> {
+                    progressBar.setVisibility(View.GONE);
+                    Toast.makeText(InfoActivity.this, "Cập nhật thông tin thành công!", Toast.LENGTH_SHORT).show();
+                    
+                    // Update local data and refresh UI
+                    if (currentTreeData.size() > COL_TREE_ID) currentTreeData.set(COL_TREE_ID, treeId);
+                    if (currentTreeData.size() > COL_SPECIES) currentTreeData.set(COL_SPECIES, species);
+                    if (currentTreeData.size() > COL_AGE) currentTreeData.set(COL_AGE, age);
+                    if (currentTreeData.size() > COL_HEIGHT) currentTreeData.set(COL_HEIGHT, height);
+                    if (currentTreeData.size() > COL_DIAMETER) currentTreeData.set(COL_DIAMETER, diameter);
+                    if (currentTreeData.size() > COL_CANOPY) currentTreeData.set(COL_CANOPY, canopy);
+                    if (currentTreeData.size() > COL_CONDITION) currentTreeData.set(COL_CONDITION, condition);
+                    
+                    updateUIWithTreeData(currentTreeData);
+                });
+
+            } catch (Exception e) {
+                Log.e(TAG, "Error updating tree data: ", e);
+                runOnUiThread(() -> {
+                    progressBar.setVisibility(View.GONE);
+                    Toast.makeText(InfoActivity.this, "Cập nhật thất bại: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                });
             }
         });
     }

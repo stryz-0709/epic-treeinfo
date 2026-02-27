@@ -1,16 +1,23 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Theme.QuảnLýCây" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <!-- Base application theme - Material 3 Dark -->
+    <style name="Theme.QuảnLýCây" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/Gold</item>
-        <item name="colorPrimaryVariant">@color/Gold</item>
+        <item name="colorPrimaryContainer">@color/Gold</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
+        <item name="colorSecondaryContainer">@color/teal_200</item>
         <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+        <!-- Tertiary color -->
+        <item name="colorTertiary">@color/Gold</item>
+        <!-- Surface colors for cards/dialogs -->
+        <item name="colorSurface">#121212</item>
+        <item name="colorOnSurface">@color/white</item>
+        <!-- Status bar color -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <!-- Edge-to-edge support -->
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
     </style>
 </resources>

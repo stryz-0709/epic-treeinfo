@@ -1,11 +1,15 @@
 package com.epictech.treeinfo;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -35,6 +39,8 @@ import com.google.api.services.sheets.v4.Sheets;
 import com.google.api.services.sheets.v4.SheetsScopes;
 import com.google.api.services.sheets.v4.model.ValueRange;
 
+import com.epictech.treeinfo.updatemanager.UpdateManager;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collections;
@@ -44,6 +50,7 @@ import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
+    private static final String UPDATE_FOLDER_ID = "1SIh7bECh-9mHKC4lPsOjOg_FnmgKj1sr";
 
     private EditText epcSerialInput;
     private Button searchCowButton;
@@ -53,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
     private static final String APPLICATION_NAME = "TreeInfoApp";
     private static final int REQUEST_CODE_SIGN_IN = 3;
+    private boolean isAdmin = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(MainActivity.this, InfoActivity.class);
                 intent.putExtra("NFC_SERIAL", epcSerial);
+                intent.putExtra("IS_ADMIN", isAdmin);
                 startActivity(intent);
             }
         });
@@ -95,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         if (account != null && GoogleSignIn.hasPermissions(account, new Scope(DriveScopes.DRIVE))) {
             initializeDriveService(account);
-            new UpdateManager(this, driveService).checkForUpdates();
+            checkForUpdates();
         } else {
             requestDriveSignIn();
         }
@@ -165,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
                 GoogleSignIn.getSignedInAccountFromIntent(data)
                         .addOnSuccessListener(googleAccount -> {
                             initializeDriveService(googleAccount);
-                            new UpdateManager(this, driveService).checkForUpdates();
+                            checkForUpdates();
                         });
             }
         }
@@ -180,6 +189,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+    }
+
+    /**
+     * Check for app updates using the modular UpdateManager
+     */
+    private void checkForUpdates() {
+        new UpdateManager.Builder(this, driveService)
+                .setFolderId(UPDATE_FOLDER_ID)
+                .setFilePrefix("cowinfo_v")
+                .setCurrentVersionCode(BuildConfig.VERSION_CODE)
+                .build()
+                .checkForUpdates();
     }
 
     /**
@@ -234,5 +255,74 @@ public class MainActivity extends AppCompatActivity {
             }
             return false; // Let other touch events pass through
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_user) {
+            showLoginDialog();
+            return true;
+        } else if (id == R.id.action_help) {
+            startActivity(new Intent(this, GuideActivity.class));
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void showLoginDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_login, null);
+        builder.setView(dialogView);
+
+        EditText etUsername = dialogView.findViewById(R.id.et_dialog_username);
+        EditText etPassword = dialogView.findViewById(R.id.et_dialog_password);
+        Button btnLogin = dialogView.findViewById(R.id.btn_dialog_login);
+        Button btnCancel = dialogView.findViewById(R.id.btn_dialog_cancel);
+        TextView tvStatus = dialogView.findViewById(R.id.tv_login_status);
+
+        // Show current status
+        if (isAdmin) {
+            tvStatus.setText("Trạng thái: Đã đăng nhập Admin");
+            tvStatus.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
+            btnLogin.setText("Đăng xuất");
+        } else {
+            tvStatus.setText("Trạng thái: Chưa đăng nhập");
+            tvStatus.setTextColor(getResources().getColor(android.R.color.darker_gray));
+            btnLogin.setText("Đăng nhập");
+        }
+
+        AlertDialog dialog = builder.create();
+
+        btnLogin.setOnClickListener(v -> {
+            if (isAdmin) {
+                // Logout
+                isAdmin = false;
+                Toast.makeText(this, "Đã đăng xuất khỏi Admin", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            } else {
+                // Login
+                String username = etUsername.getText().toString().trim();
+                String password = etPassword.getText().toString().trim();
+
+                if (username.equals("admin") && password.equals("password")) {
+                    isAdmin = true;
+                    Toast.makeText(this, "Đăng nhập Admin thành công!", Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
+                } else {
+                    Toast.makeText(this, "Sai tên đăng nhập hoặc mật khẩu!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        btnCancel.setOnClickListener(v -> dialog.dismiss());
+
+        dialog.show();
     }
 }

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chỉnh sửa thông tin Cây"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="16dp" />
+
+            <TextView
+                android:id="@+id/tv_edit_tree_nfc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NFC ID: "
+                android:textSize="18sp"
+                android:layout_marginBottom="16dp" />
+
+            <!-- We omit image editing for now as the current tree images are from API directly -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="Tree ID:"
+                android:textStyle="bold"
+                android:textSize="16dp"/>
+
+            <EditText
+                android:id="@+id/et_edit_tree_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nhập Tree ID"
+                android:inputType="text"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="Loài cây:"
+                android:textStyle="bold"
+                android:textSize="16dp"/>
+
+            <EditText
+                android:id="@+id/et_edit_tree_species"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nhập loài cây"
+                android:inputType="text"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="Tuổi (năm):"
+                android:textStyle="bold"
+                android:textSize="16dp"/>
+
+            <EditText
+                android:id="@+id/et_edit_tree_age"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nhập tuổi"
+                android:inputType="number"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="Chiều cao (m):"
+                android:textStyle="bold"
+                android:textSize="16dp"/>
+
+            <EditText
+                android:id="@+id/et_edit_tree_height"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nhập chiều cao"
+                android:inputType="numberDecimal"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="Đường kính thân (cm):"
+                android:textStyle="bold"
+                android:textSize="16dp"/>
+
+            <EditText
+                android:id="@+id/et_edit_tree_diameter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nhập đường kính thân"
+                android:inputType="numberDecimal"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="Độ rộng tán lá (m):"
+                android:textStyle="bold"
+                android:textSize="16dp"/>
+
+            <EditText
+                android:id="@+id/et_edit_tree_canopy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nhập độ rộng tán lá"
+                android:inputType="numberDecimal"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="Tình trạng:"
+                android:textStyle="bold"
+                android:textSize="16dp"/>
+
+            <Spinner
+                android:id="@+id/spinner_edit_tree_condition"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:minHeight="48dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="end">
+
+                <Button
+                    android:id="@+id/btn_save_tree"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lưu"
+                    android:layout_marginEnd="8dp" />
+
+                <Button
+                    android:id="@+id/btn_cancel_edit_tree"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hủy" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
